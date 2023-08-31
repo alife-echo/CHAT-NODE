@@ -5,8 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CHAT-NODE</title>
     <link rel="stylesheet" href="./style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+
 </head>
 <body>
-    <h1>AIN ZÉ DA MANGA</h1>
+    <div class="page" id="loginPage">
+        <h1>QUAL SEU NOME ?</h1>
+        <input type="text" id="loginNameInput">
+    </div>
+    <div class="page" id="chatPage">
+         <div class="chatArea">
+            <ul class="chatList">
+                <li class="m-status">Fulano entrou na sala</li>
+                <li class="m-status">Fulano saiu na sala</li>
+                <li class="m-txt"><span class="me">Álife:</span> Opa,tudo bem?</li>
+                <li class="m-txt"><span>Paulo:</span> Tudo,e com você?</li>
+            </ul>
+            <ul class="userList">
+                 <li>Álife (você)</li>
+                 <li>Matheus</li>
+                 <li>Fernando</li>                 
+            </ul>
+         </div>
+         <div class="chatInput">
+            <input type="text"  id="chatTextInput" placeholder="Digite uma mensagem (e aperter enter) ">
+         </div>
+    </div>
+
 </body>
 </html>
