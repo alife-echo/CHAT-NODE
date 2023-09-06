@@ -26,5 +26,27 @@ io.on('connection',(socket:CustomSocket)=>{  //quando a função io rodar no mai
         connectedUsers.push(username) // adiciono o usuario a uma lista
         console.log(connectedUsers)
         socket.emit('user-ok',connectedUsers) // respondo com 'user-ok' enviando a lista de usuarios
+        socket.broadcast.emit('list-update',{
+             joined:username,
+             list:connectedUsers
+        }) // mando a mensagem pra todo mundo menos aquele usuario em especifico
+    })
+
+    socket.on('disconnect',()=>{
+        connectedUsers = connectedUsers.filter(u => u != socket.username) // quando houver um usuario fechar a guia, eu pego o nome do usuario e retiro da lista
+        console.log(connectedUsers)
+        socket.broadcast.emit('list-update',{ // mando um emmit para atualizar a lista
+            left:socket.username, // passo o usuario que saiu
+            list:connectedUsers // e a lista de usuarios atualizada
+        })
+    })
+
+    socket.on('send-msg',(txt:string)=>{
+         let obj = {
+            username:socket.username,
+            message:txt
+         }
+         socket.emit('show-msg',obj)
+         socket.broadcast.emit('show-msg',obj)
     })
 })
